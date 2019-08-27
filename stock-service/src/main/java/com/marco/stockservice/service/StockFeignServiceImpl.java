@@ -3,14 +3,12 @@ package com.marco.stockservice.service;
 import com.marco.stockservice.model.Product;
 import com.marco.stockservice.model.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Primary
 public class StockFeignServiceImpl implements StockService {
 
     @Autowired

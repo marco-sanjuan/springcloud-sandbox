@@ -1,7 +1,7 @@
 package com.marco.stockservice.controller;
 
 import com.marco.stockservice.model.Stock;
-import com.marco.stockservice.service.StockRestTemplateServiceImpl;
+import com.marco.stockservice.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +13,7 @@ import java.util.List;
 public class StockController {
 
     @Autowired
-    private StockRestTemplateServiceImpl stockService;
+    private StockService stockService;
 
     @GetMapping("/stock/all")
     public List<Stock> findAllStock(){
