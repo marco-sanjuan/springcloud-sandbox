@@ -3,7 +3,7 @@ package com.marco.productsservice.controller;
 import com.marco.productsservice.model.Product;
 import com.marco.productsservice.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,24 +18,21 @@ public class ProductsController {
     @Autowired
     private ProductsService productsService;
 
-    @Autowired
-    private Environment environment;
+    @Value("${server.port}")
+    private Integer port;
 
     @GetMapping("/products/all")
     public List<Product> listAll(){
         return productsService.findAll().stream()
-                .peek(p -> p.setPort(getPort()))
+                .peek(p -> p.setPort(port))
                 .collect(toList());
     }
 
     @GetMapping("/products/{id}")
     public Product findOne(@PathVariable Long id){
         final Product product = productsService.findById(id);
-        product.setPort(getPort());
+        product.setPort(port);
         return product;
     }
 
-    private int getPort() {
-        return Integer.parseInt(environment.getProperty("local.server.port"));
-    }
 }
