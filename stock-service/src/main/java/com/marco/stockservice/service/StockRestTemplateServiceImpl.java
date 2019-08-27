@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Deprecated //we use Feign implementation
 public class StockRestTemplateServiceImpl implements StockService {
 
     @Autowired
