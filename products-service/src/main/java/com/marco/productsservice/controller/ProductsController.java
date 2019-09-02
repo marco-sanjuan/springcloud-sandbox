@@ -22,7 +22,13 @@ public class ProductsController {
 
     @GetMapping("/products/{id}")
     public Product findOne(@PathVariable Long id){
-        return productsService.findById(id);
+        final Product producto = productsService.findById(id);
+        /*try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
+        return producto;
     }
 
 }
