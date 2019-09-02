@@ -4,6 +4,16 @@ import java.util.Date;
 
 public class Product {
 
+    public Product() {
+    }
+
+    Product(Long id, String name, Double price, Date createdAt) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.createdAt = createdAt;
+    }
+
     private Long id;
 
     private String name;
@@ -11,8 +21,6 @@ public class Product {
     private Double price;
 
     private Date createdAt;
-
-    private Integer port;
 
     public Long getId() {
         return id;
@@ -46,11 +54,32 @@ public class Product {
         this.createdAt = createdAt;
     }
 
-    public Integer getPort() {
-        return port;
+
+
+
+    public static ProductBuilder create(){
+        return new ProductBuilder();
     }
 
-    public void setPort(Integer port) {
-        this.port = port;
+    public static class ProductBuilder {
+        public StepName withId(Long id){
+            return name -> price -> createdAt -> () -> new Product(id, name, price, createdAt);
+        }
+
+        public interface StepName{
+            StepPrice withName(String name);
+        }
+
+        public interface StepPrice {
+            StepCreatedAt withPrice(Double price);
+        }
+
+        public interface StepCreatedAt {
+            StepBuild withCreatedAt(Date createdAt);
+        }
+
+        public interface StepBuild {
+            Product build();
+        }
     }
 }

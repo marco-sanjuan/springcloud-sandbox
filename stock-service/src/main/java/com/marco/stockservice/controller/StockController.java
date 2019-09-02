@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,9 +30,12 @@ public class StockController {
     }
 
     public Stock alternativeFindStockByProductId(Long id){
-        Product dummyProduct = new Product();
-        dummyProduct.setName("Dummy Product");
-        dummyProduct.setId(0L);
+        final Product dummyProduct = Product.create()
+                .withId(0L)
+                .withName("Dummy")
+                .withPrice(0.0)
+                .withCreatedAt(new Date())
+                .build();
         return new Stock(dummyProduct, 0);
     }
 
