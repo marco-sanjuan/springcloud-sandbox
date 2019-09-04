@@ -10,8 +10,10 @@ GET http://localhost:8080/api/stock/stock/product/3
 ###
 GET http://localhost:8888/stock-service/default
 ###
-GET http://localhost:8888/stock-service/pro
+GET http://localhost:8888/stock-service/dev
 ###
 GET http://localhost:8005/stock/config
+###
+POST http://localhost:8005/actuator/refresh
 ###
 
