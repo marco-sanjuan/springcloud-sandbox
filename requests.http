@@ -10,6 +10,8 @@ GET http://localhost:8080/api/stock/stock/product/3
 ###
 GET http://localhost:8888/stock-service/default
 ###
-GET http://localhost:8080/api/stock/stock/config
+GET http://localhost:8888/stock-service/pro
+###
+GET http://localhost:8005/stock/config
 ###
 
