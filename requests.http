@@ -1,6 +1,6 @@
-GET http://localhost:8001/products/all
+GET http://localhost:8080/api/products/products/all
 ###
-GET http://localhost:8001/products/3
+GET http://localhost:8080/api/products/products/3
 ###
 GET http://localhost:8005/stock/all
 ###
@@ -15,5 +15,25 @@ GET http://localhost:8888/stock-service/dev
 GET http://localhost:8005/stock/config
 ###
 POST http://localhost:8005/actuator/refresh
+###
+POST http://localhost:8080/api/products/products
+Content-Type: application/json
+
+{
+  "name": "Plane",
+  "price": 5000000,
+  "createdAt": "2020-01-01"
+}
+###
+PUT http://localhost:8080/api/products/products/3
+Content-Type: application/json
+
+{
+  "name": "Bycicle",
+  "price": 1500,
+  "createdAt": "2020-03-01"
+}
+###
+DELETE http://localhost:8080/api/products/products/6
 ###
 

@@ -3,9 +3,8 @@ package com.marco.productsservice.controller;
 import com.marco.productsservice.model.Product;
 import com.marco.productsservice.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +30,25 @@ public class ProductsController {
         return producto;
     }
 
+    @PostMapping("/products")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product create(@RequestBody Product product){
+        return productsService.save(product);
+    }
+
+    @PutMapping("/products/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Product update(@RequestBody Product product, @PathVariable Long id){
+        final Product dbProduct = productsService.findById(id);
+        dbProduct.setName(product.getName());
+        dbProduct.setPrice(product.getPrice());
+        dbProduct.setCreatedAt(product.getCreatedAt());
+        return productsService.save(dbProduct);
+    }
+
+    @DeleteMapping("/products/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable Long id){
+        productsService.deleteById(id);
+    }
 }

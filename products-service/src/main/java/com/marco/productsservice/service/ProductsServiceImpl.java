@@ -4,6 +4,7 @@ import com.marco.productsservice.model.Product;
 import com.marco.productsservice.persistence.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,5 +22,17 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     public Product findById(Long id) {
         return productsRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public Product save(Product product) {
+        return productsRepository.save(product);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long productId) {
+        productsRepository.deleteById(productId);
     }
 }
