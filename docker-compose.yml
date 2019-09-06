@@ -1,0 +1,34 @@
+version: '3'
+services:
+  config-server:
+    build: ./config-server
+    ports:
+      - "8888:8888"
+  eureka-server:
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+  products-service:
+    build: ./products-service
+    depends_on:
+      - eureka-server
+    environment:
+      ENV_EUREKA_URL: ${ENV_EUREKA_URL}
+  stock-service: ################################ TODO: stock-service starts before config-server, so cannot read configuration, check ways to solve
+    build: ./stock-service
+    depends_on:
+      - config-server
+      - eureka-server
+    ports:
+      - "8005:8005"
+    environment:
+      ENV_EUREKA_URL: ${ENV_EUREKA_URL}
+      ENV_CONFIG_URL: ${ENV_CONFIG_URL}
+
+#TODO environment variables are on .env file, if I put them here, container do not receive values (O_o)
+
+# RUN
+# docker-compose up
+
+# CLEAN
+# docker-compose rm
