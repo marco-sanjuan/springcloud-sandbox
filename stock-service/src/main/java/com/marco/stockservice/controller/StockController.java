@@ -25,7 +25,7 @@ public class StockController {
     @Value("${example.config.text}")
     private String remoteConfigExample;
 
-    @GetMapping("/stock/all")
+    @GetMapping("/stock")
     public List<Stock> findAllStock(){
         return stockService.findAllStock();
     }

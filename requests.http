@@ -1,8 +1,8 @@
-GET http://localhost:8080/api/products/products/all
+GET http://localhost:8080/api/products/products
 ###
 GET http://localhost:8080/api/products/products/3
 ###
-GET http://localhost:8005/stock/all
+GET http://localhost:8005/stock
 ###
 GET http://localhost:8005/stock/product/3
 ###
