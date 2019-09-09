@@ -1,29 +1,54 @@
-version: '3'
+version: '2.3'
 services:
   config-server:
     build: ./config-server
     ports:
       - "8888:8888"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/info"]
+      interval: 5s
+      timeout: 4s
+      retries: 30
   eureka-server:
     build: ./eureka-server
     ports:
       - "8761:8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/info"]
+      interval: 5s
+      timeout: 4s
+      retries: 30
+  zuul-server:
+    build: ./zuul-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    environment:
+      ENV_EUREKA_URL: ${ENV_EUREKA_URL}
   products-service:
     build: ./products-service
     depends_on:
-      - eureka-server
+#      config-server:
+#        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
+#      ENV_CONFIG_URL: ${ENV_CONFIG_URL}
       ENV_EUREKA_URL: ${ENV_EUREKA_URL}
-  stock-service: ################################ TODO: stock-service starts before config-server, so cannot read configuration, check ways to solve
+  stock-service:
     build: ./stock-service
     depends_on:
-      - config-server
-      - eureka-server
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     ports:
       - "8005:8005"
     environment:
-      ENV_EUREKA_URL: ${ENV_EUREKA_URL}
       ENV_CONFIG_URL: ${ENV_CONFIG_URL}
+      ENV_EUREKA_URL: ${ENV_EUREKA_URL}
 
 #TODO environment variables are on .env file, if I put them here, container do not receive values (O_o)
 
