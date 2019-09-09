@@ -20,7 +20,7 @@ public class StockRestTemplateServiceImpl implements StockService {
 
     @Override
     public List<Stock> findAllStock(){
-        List<Product> products = Arrays.asList(restTemplate.getForObject("http://products-service/products/all", Product[].class));
+        List<Product> products = Arrays.asList(restTemplate.getForObject("http://products-service/products", Product[].class));
         return products.stream()
                 .map( p -> new Stock(p, 1))
                 .collect(Collectors.toList());

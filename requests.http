@@ -6,6 +6,8 @@ GET http://localhost:8005/stock
 ###
 GET http://localhost:8005/stock/product/3
 ###
+GET http://localhost:8080/api/stock/stock
+###
 GET http://localhost:8080/api/stock/stock/product/3
 ###
 GET http://localhost:8888/stock-service/default

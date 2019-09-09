@@ -10,7 +10,7 @@ import java.util.List;
 @FeignClient(name = "products-service")
 public interface StockFeignClient {
 
-    @GetMapping("/products/all")
+    @GetMapping("/products")
     List<Product> findAll();
 
     @GetMapping("/products/{id}")
