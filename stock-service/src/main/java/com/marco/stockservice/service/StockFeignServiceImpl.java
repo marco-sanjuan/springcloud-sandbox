@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-//@Primary
+@Primary
 public class StockFeignServiceImpl implements StockService {
 
     @Autowired
@@ -32,16 +32,16 @@ public class StockFeignServiceImpl implements StockService {
 
     @Override
     public Product saveProduct(Product product) {
-        return null;
+        return stockFeignClient.saveProduct(product);
     }
 
     @Override
     public Product updateProduct(Product product, Long id) {
-        return null;
+        return stockFeignClient.updateProduct(product, id);
     }
 
     @Override
     public void deleteProduct(Long id) {
-
+        stockFeignClient.deleteProduct(id);
     }
 }

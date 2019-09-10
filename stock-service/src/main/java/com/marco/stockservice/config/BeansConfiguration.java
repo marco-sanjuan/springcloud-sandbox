@@ -11,7 +11,7 @@ public class BeansConfiguration {
 
     @Deprecated //we use Feign
     @Bean("restTemplate")
-    @LoadBalanced //necessary for RestTemplate to work with Eureka
+//    @LoadBalanced //necessary for RestTemplate to work with Eureka
     public RestTemplate registerRestTemplate(){
         return new RestTemplate();
     }

@@ -16,7 +16,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Primary
+/**
+ * IMPORTANT: to use RestTemplate implementation, uncomment @LoadBalanced line in {@link com.marco.stockservice.config.BeansConfiguration}
+ */
+//@Primary
 @Deprecated //we use Feign implementation
 public class StockRestTemplateServiceImpl implements StockService {
 
