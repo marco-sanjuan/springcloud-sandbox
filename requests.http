@@ -39,3 +39,41 @@ Content-Type: application/json
 DELETE http://localhost:8080/api/products/products/6
 ###
 
+
+
+
+
+
+
+###
+POST http://localhost:8005/stock/products
+Content-Type: application/json
+
+{
+  "name": "Plane",
+  "price": 5000000,
+  "createdAt": "2020-01-01"
+}
+###
+
+###
+POST http://localhost:8080/api/stock/stock/products
+Content-Type: application/json
+
+{
+  "name": "Plane",
+  "price": 5000000,
+  "createdAt": "2020-01-01"
+}
+###
+PUT http://localhost:8080/api/stock/stock/products/3
+Content-Type: application/json
+
+{
+  "name": "Bycicle",
+  "price": 1500,
+  "createdAt": "2020-03-01"
+}
+###
+DELETE http://localhost:8080/api/stock/stock/products/6
+###

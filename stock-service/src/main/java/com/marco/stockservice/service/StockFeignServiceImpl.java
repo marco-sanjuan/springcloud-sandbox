@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Primary
+//@Primary
 public class StockFeignServiceImpl implements StockService {
 
     @Autowired
@@ -28,5 +28,20 @@ public class StockFeignServiceImpl implements StockService {
     public Stock findStockByProductId(Long id) {
         final Product product = stockFeignClient.findOne(id);
         return new Stock(product, 1);
+    }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return null;
+    }
+
+    @Override
+    public Product updateProduct(Product product, Long id) {
+        return null;
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+
     }
 }

@@ -33,6 +33,12 @@ public class ProductsServiceImpl implements ProductsService {
     @Override
     @Transactional
     public void deleteById(Long productId) {
+        if(productId == null){
+            return;
+        }
+        if(productsRepository.findById(productId).isEmpty()){
+            return;
+        }
         productsRepository.deleteById(productId);
     }
 }

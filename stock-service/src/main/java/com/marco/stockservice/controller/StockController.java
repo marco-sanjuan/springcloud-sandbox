@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -39,7 +37,7 @@ public class StockController {
     public Stock alternativeFindStockByProductId(Long id){
         final Product dummyProduct = Product.create()
                 .withId(0L)
-                .withName("Dummy")
+                .withName("Dummy <--------------------------------")
                 .withPrice(0.0)
                 .withCreatedAt(new Date())
                 .build();
@@ -52,6 +50,24 @@ public class StockController {
         configMap.put("example", remoteConfigExample);
         configMap.put("port", port);
         return new ResponseEntity<Map<String,String>>(configMap, HttpStatus.OK);
+    }
+
+    @PostMapping("/stock/products")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product createProduct(@RequestBody Product product){
+        return stockService.saveProduct(product);
+    }
+
+    @PutMapping("/stock/products/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Product updateProduct(@RequestBody Product product, @PathVariable Long id){
+        return stockService.updateProduct(product, id);
+    }
+
+    @DeleteMapping("/stock/products/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable Long id){
+        stockService.deleteProduct(id);
     }
 
 }
