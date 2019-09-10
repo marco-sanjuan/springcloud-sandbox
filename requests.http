@@ -1,22 +1,7 @@
+#################### PRODUCTS ##############################
 GET http://localhost:8080/api/products/products
 ###
 GET http://localhost:8080/api/products/products/3
-###
-GET http://localhost:8005/stock
-###
-GET http://localhost:8005/stock/product/3
-###
-GET http://localhost:8080/api/stock/stock
-###
-GET http://localhost:8080/api/stock/stock/product/3
-###
-GET http://localhost:8888/stock-service/default
-###
-GET http://localhost:8888/stock-service/dev
-###
-GET http://localhost:8005/stock/config
-###
-POST http://localhost:8005/actuator/refresh
 ###
 POST http://localhost:8080/api/products/products
 Content-Type: application/json
@@ -41,10 +26,23 @@ DELETE http://localhost:8080/api/products/products/6
 
 
 
-
-
-
-
+#################### STOCK ##############################
+###
+GET http://localhost:8005/stock
+###
+GET http://localhost:8005/stock/product/3
+###
+GET http://localhost:8080/api/stock/stock
+###
+GET http://localhost:8080/api/stock/stock/product/3
+###
+GET http://localhost:8888/stock-service/default
+###
+GET http://localhost:8888/stock-service/dev
+###
+GET http://localhost:8005/stock/config
+###
+POST http://localhost:8005/actuator/refresh
 ###
 POST http://localhost:8005/stock/products
 Content-Type: application/json
@@ -54,8 +52,6 @@ Content-Type: application/json
   "price": 5000000,
   "createdAt": "2020-01-01"
 }
-###
-
 ###
 POST http://localhost:8080/api/stock/stock/products
 Content-Type: application/json
@@ -76,4 +72,45 @@ Content-Type: application/json
 }
 ###
 DELETE http://localhost:8080/api/stock/stock/products/6
+###
+
+#################### USERS ##############################
+###
+GET http://localhost:8080/api/users/users
+###
+POST http://localhost:8080/api/users/users
+Content-Type: application/json
+
+{
+  "userName": "pepe2",
+  "password": "12345",
+  "firstName": "Manuel",
+  "lastName": "Yo",
+  "enabled": true,
+  "email": "pepe2@test.com",
+  "roles": [
+    {
+      "id": 2, "name": "ROLE_USER"
+    }
+  ]
+}
+###
+PUT http://localhost:8080/api/users/users/5
+Content-Type: application/json
+
+{
+  "userName": "juanjo",
+  "password": "12345",
+  "firstName": "juanjo",
+  "lastName": "Yo",
+  "enabled": true,
+  "email": "juanjo@test.com",
+  "roles": [
+    {
+      "id": 2, "name": "ROLE_USER"
+    }
+  ]
+}
+###
+DELETE http://localhost:8080/api/users/users/2
 ###
