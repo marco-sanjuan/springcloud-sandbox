@@ -118,3 +118,18 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8080/api/users/users/2
 ###
+
+
+
+
+#################### SECURITY ##############################
+###
+POST http://localhost:8080/api/security/oauth/token
+Authorization: Basic api-client 12345
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=12345&grant_type=password
+###
+
+
+
