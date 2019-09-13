@@ -118,6 +118,10 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8080/api/users/users/2
 ###
+//AUTHENTICATED: generate token with /api/security/oauth/token and paste here
+DELETE http://localhost:8080/api/users/users/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJBZG1pbiIsImxhc3ROYW1lIjoic3lzYWRtaW4iLCJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE1NjgzNjkwMDAsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwianRpIjoiZWU5ZDc5Y2YtMWIwNS00NzM3LTk3NDItNjAwZjg0NjdkMzZiIiwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsImNsaWVudF9pZCI6ImFwaS1jbGllbnQifQ.Tzq18dElFt0F1dXaWQb0UgUh5lNSLHphDb7hOWmjoQc
+###
 
 
 
